@@ -1,9 +1,10 @@
 // node modules //
-// Getting the hang of this //
+// This module are require to make the app work //
+// To use - in node type 'npm i inquirer' then replace inquirer with mysql
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 
-// sql connection //
+// We set the connection to the database here //
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -26,7 +27,7 @@ connection.connect(function(err) {
 var shoppingCart = [];
 var totalCost = 0;
 
-// Generic funtion set up //
+// Generic funtion that allows the user to chose what we have in stock //
 function itemSelect(){
   var items = [];
 
@@ -53,6 +54,8 @@ function howManyItems(itemNames){
     itemCost = res[0].price;
     department = res[0].department_name;
   });
+
+  // Inquirer is use to ask the use for input prompts.
   //prompt the user to ask how many of the item they would like
   inquirer.prompt([
     {
@@ -61,12 +64,13 @@ function howManyItems(itemNames){
     message: 'How many ' + item + ' would you like to purchase?',
 
 
-
+// Similar to the greatbay assignment, I grab some of the code. Tweaked it for bamazon assignment. 
 function checkout(){
  
   if (shoppingCart.length != 0) {
     var grandTotal = 0;
 
+// Keeping it fancy
     console.log('*****************************************');
     console.log('Here is your cart. Are you ready to checkout?');
     for (var i = 0; i < shoppingCart.length; i++) {
@@ -123,8 +127,7 @@ function checkout(){
 }
 
 
-
-
+// Start the process again, did not fully tested at this point.
 checkout function
     checkout();
   }

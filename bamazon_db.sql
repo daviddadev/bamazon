@@ -1,3 +1,8 @@
+-- Here we create the database, starting with delete database and then 
+-- create, we add USE keyword to use the database. Follow with the
+-- creation of the table (products) of 10 items for sale.
+
+
 -- Creating the database --
 CREATE DATABASE bamazon_db;
 
