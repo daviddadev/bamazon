@@ -14,34 +14,34 @@ CREATE TABLE products (
 
 -- List of 10 products --
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Apple iPhone 4', 'Electronics', 399.99, 40);
+VALUES ('iPhone', 'Electronics', 399.99, 10);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Jaybird X3 Headset', 'Electronics', 99.99, 40);
+VALUES ('Headset', 'Electronics', 99.99, 10);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Boxing Gloves', 'Sports', 14.99, 400);
+VALUES ('Gloves', 'Sports', 14.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Soccer Ball', 'Sports', 4.99, 400);
+VALUES ('Ball', 'Sports', 4.99, 10);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Call of Duty', 'Games', 49.99, 20);
+VALUES ('Zelda', 'Games', 49.99, 20);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Monopoly', 'Games', 19.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Beach Umbrella', 'Seasonal', 14.99, 40);
+VALUES ('Umbrella', 'Seasonal', 14.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Water Slide', 'Seasonal', 94.99, 40);
+VALUES ('Slide', 'Seasonal', 94.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Water Hose', 'Garden', 7.99, 40);
+VALUES ('Hose', 'Garden', 7.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Gazibo', 'Garden', 99.99, 40);
+VALUES ('Shovel', 'Garden', 99.99, 40);
 
 
 -- Manager Table --
