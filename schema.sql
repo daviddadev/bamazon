@@ -1,13 +1,7 @@
--- Here we create the database, starting with delete database and then 
--- create, we add USE keyword to use the database. Follow with the
--- creation of the table (products) of 10 items for sale.
-
-
 -- Creating the database --
 CREATE DATABASE bamazon_db;
 
 USE bamazon_db;
-
 -- Creating the table --
 CREATE TABLE products (
     item_id INTEGER(11) AUTO_INCREMENT NOT NULL,
@@ -50,7 +44,7 @@ INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Gazibo', 'Garden', 99.99, 40);
 
 
--- Bonus feelin' brave ;) --
+-- Manager Table --
 CREATE TABLE Departments (
     department_id INTEGER(11) AUTO_INCREMENT NOT NULL,
     deparment_name VARCHAR(50) NOT NULL,

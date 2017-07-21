@@ -1,134 +1,83 @@
-// node modules //
-// This module are require to make the app work //
-// To use - in node type 'npm i inquirer' then replace inquirer with mysql
+// Require modules.
 var mysql = require('mysql');
 var inquirer = require('inquirer');
-
-// We set the connection to the database here //
+// Connection to Database.
 var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "dave",
-    database: "bamazon_db"
-});
-
-// send connection
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
-    printItems(function(){
-      itemSelect();
-    });
-});
-
-
-// global variables //
-var shoppingCart = [];
-var totalCost = 0;
-
-// Generic funtion that allows the user to chose what we have in stock //
-function itemSelect(){
-  var items = [];
-
-  connection.query('SELECT product_name FROM product', function(err, res){
-    if (err) throw err;
-    // add to an array
-    for (var i = 0; i < res.length; i++) {
-      items.push(res[i].product_name)
-    }
-
-//  function to prompt the user as to how many of each item they want
-function howManyItems(itemNames){
-  
-  var item = itemNames.shift();
-  var itemStock;
-  var department;
-  //query mysql to get the current stock, price, and department of the item
-  connection.query('SELECT stock_quantaties, price, department_name FROM product WHERE ?', {
-    product_name: item
-  }, function(err, res){
-    if(err) throw err;
-    //set stock, price, and department in a variable
-    itemStock = res[0].stock_quantaties;
-    itemCost = res[0].price;
-    department = res[0].department_name;
-  });
-
-  // Inquirer is use to ask the use for input prompts.
-  //prompt the user to ask how many of the item they would like
-  inquirer.prompt([
-    {
-    name: 'amount',
-    type: 'text',
-    message: 'How many ' + item + ' would you like to purchase?',
-
-
-// Similar to the greatbay assignment, I grab some of the code. Tweaked it for bamazon assignment. 
-function checkout(){
- 
-  if (shoppingCart.length != 0) {
-    var grandTotal = 0;
-
-// Keeping it fancy
-    console.log('*****************************************');
-    console.log('Here is your cart. Are you ready to checkout?');
-    for (var i = 0; i < shoppingCart.length; i++) {
-      var item = shoppingCart[i].item;
-      var amount = shoppingCart[i].amount;
-      var cost = shoppingCart[i].itemCost.toFixed(2);
-      var total = shoppingCart[i].total.toFixed(2);
-      var itemCost = cost * amount;
-      grandTotal += itemCost;
-      console.log(amount + ' ' + item + ' ' + '$' + total);
-    }
-
-    console.log('Total: $' + grandTotal.toFixed(2));
-
-    inquirer.prompt([
-      {
-        name: 'checkout',
-        type: 'list',
-        message: 'Ready to checkout?',
-        choices: ['Checkout', 'Edit Cart']
-      }
-    ]).then(function(res){
-    
-        if (res.checkout === 'Checkout') {
-            updateDB(grandTotal);
-        } else {
- 
-          editCart();
-        }
-      });
-  } else {
- 
-    inquirer.prompt([
-      {
-      name: 'choice',
-      type: 'list',
-      message: 'Would you like to keep shopping or leave?',
-      choices: ['Keep Shopping', 'Leave']
-      }
-    ]).then(function(user){
-        
-        if (user.choice === 'Keep Shopping') {
-          printItems(function(){
-            userSelectsItem();
-          });
-        } else {
-        
-          console.log('Thanks for looking!');
-          connection.end();
-        }
-    });
-
-  }
+	host: 'localhost',
+	port: 3306,
+	user: 'root',
+	password: 'isoto0808',
+	database: 'bamazon_db'
+})
+// Testing connection.
+connection.connect(function(err){
+	if(err) throw err;
+	console.log("Successfuly connected to Bamazon!");
+	createTable();
+})
+// Displays table on 'cmd'.
+var createTable = function(){
+	// MySQL string query
+	connection.query("SELECT * FROM products", function(err,res){
+		for(var i = 0; i < res.length; i++){
+			console.log(res[i].item_id + " | " + res[i].product_name + " | " + 
+				res[i].deparment_name + " | " + res[i].price + " | " + res[i].stock_quantity + "\n");
+		}
+	promptUser(res);
+	})
 }
-
-
-// Start the process again, did not fully tested at this point.
-checkout function
-    checkout();
-  }
+// Prompts the user to make a selection on a product.
+var promptUser = function(res){
+	inquirer.prompt([{
+		type: 'input',
+		name: 'choice',
+		message: "Welcome to Bamazon, select an item from the store! (exit app with: e)"
+	}]).then(function(answer){
+		var correct = false;
+		// Give user the option to exit the app with a simple command.
+		// If selection is made with upper case, lowerCase() will convert the letter to lower case. 
+		if(answer.choice.toLowerCase() == "e"){
+			connection.end();
+		}
+		// This loops runs thru the product list.
+		for(var i = 0; i < res.length; i++){
+			if(res[i].product_name == answer.choice){
+				correct = true;
+				// Sets the input choice of the user.
+				var product = answer.choice;
+				// ID is the chosen product.
+				var id = i;
+				// Prompt user the quantity amount.
+				inquirer.prompt({
+					type: 'input',
+					name: 'quantity',
+					// User has to option to add the amount of items.
+					message: 'How many would you like to add to the shopping cart?',
+					validate: function(value){
+						if(isNaN(value) == false){
+							return true;
+						} else {
+							return false;
+						}
+					}
+				}).then(function(answer){
+					if((res[id].stock_quantity - answer.quantity) > 0){
+						// MySQL string, and response arguments pass to SQL.
+						connection.query("UPDATE products SET stock_quantity='" + (res[id].stock_quantity - answer.quantity) + "' WHERE product_name= '" + product + "'", function(err,res2){
+							// Displays to the user the item has been purchased
+							console.log("Product Purchased!");
+							createTable();
+						})
+					} else {
+						console.log("Nope! try again!");
+						promptUser(res);
+					}
+				})
+			}
+		}
+		if(i == res.length && correct == false){
+				console.log("Error, Try again!");
+				promptUser(res);
+		}
+	})
 }
