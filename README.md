@@ -1,13 +1,21 @@
 <!-- ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png) -->
-
+1. Setting up MySQL Workbench with the database and table.
 ![Image one](https://github.com/sotoxp/bamazon/blob/master/images/1-mySQLtable.png)
+2. We add some value to the table with the ISERT INTO and VALUES keywords.
 ![Image two](https://github.com/sotoxp/bamazon/blob/master/images/2-mgmtTable.JPG)
+3. Table populated with products data.
 ![Image three](https://github.com/sotoxp/bamazon/blob/master/images/3-mySqlTableNoErrors.JPG)
+4. To begin we will need to clone the repo and set up connection to the database.
 ![Image four](https://github.com/sotoxp/bamazon/blob/master/images/4-CloneTheRepo.JPG)
+
 ![Image five](https://github.com/sotoxp/bamazon/blob/master/images/5-TableConfig.JPG)
+6. Install requirer dependencies. (NPM installs)
 ![Image six](https://github.com/sotoxp/bamazon/blob/master/images/6-ConnectedSucc.JPG)
+7. Select an item here.
 ![Image seven](https://github.com/sotoxp/bamazon/blob/master/images/7-TableAndSelect.JPG)
+8. Amount of that item to purchase?
 ![Image eight](https://github.com/sotoxp/bamazon/blob/master/images/8-SelectionAndQuantity.JPG)
+9. Store stock inventory is adjusted to the new total.
 ![Image nine](https://github.com/sotoxp/bamazon/blob/master/images/9-RemovesQuantityFromInventory.JPG)
 
 
