@@ -1,3 +1,22 @@
+<!-- ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png) -->
+
+![Image one](https://github.com/sotoxp/bamazon/blob/master/images/1-mySQLtable.png)
+![Image two](https://github.com/sotoxp/bamazon/blob/master/images/2-mgmtTable.JPG)
+![Image three](https://github.com/sotoxp/bamazon/blob/master/images/3-mySqlTableNoErrors.JPG)
+![Image four](https://github.com/sotoxp/bamazon/blob/master/images/4-CloneTheRepo.JPG)
+![Image five](https://github.com/sotoxp/bamazon/blob/master/images/5-TableConfig.JPG)
+![Image six](https://github.com/sotoxp/bamazon/blob/master/images/6-ConnectedSucc.JPG)
+![Image seven](https://github.com/sotoxp/bamazon/blob/master/images/7-TableAndSelect.JPG)
+![Image eight](https://github.com/sotoxp/bamazon/blob/master/images/8-SelectionAndQuantity.JPG)
+![Image nine](https://github.com/sotoxp/bamazon/blob/master/images/9-RemovesQuantityFromInventory.JPG)
+
+
+
+
+
+
+******************************************************************************
+
 # Week of 12 HW: Node.js & MySQL
 
 ## Overview
