@@ -14,7 +14,7 @@ CREATE TABLE products (
 
 -- List of 10 products --
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('iPhone', 'Electronics', 399.99, 10);
+VALUES ('iPhone', 'Electronics', 199.99, 10);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Headset', 'Electronics', 99.99, 10);
@@ -32,7 +32,7 @@ INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Monopoly', 'Games', 19.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Umbrella', 'Seasonal', 14.99, 40);
+VALUES ('Umbrella', 'Seasonal', 4.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Slide', 'Seasonal', 94.99, 40);
@@ -41,7 +41,7 @@ INSERT INTO products (product_name, deparment_name, price, stock_quantity)
 VALUES ('Hose', 'Garden', 7.99, 40);
 
 INSERT INTO products (product_name, deparment_name, price, stock_quantity)
-VALUES ('Shovel', 'Garden', 99.99, 40);
+VALUES ('Shovel', 'Garden', 19.99, 40);
 
 
 -- Manager Table --

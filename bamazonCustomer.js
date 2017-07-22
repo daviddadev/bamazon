@@ -6,15 +6,21 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
 	user: 'root',
+	// -- ..[ Password marker ].. -- //
 	password: 'isoto0808',
 	database: 'bamazon_db'
 })
 // Testing connection.
 connection.connect(function(err){
 	if(err) throw err;
-	console.log("Successfuly connected to Bamazon!");
+	console.log("Successfully connected to Bamazon Store!");
 	createTable();
 })
+
+// Global functions
+// shoppingCart()G;
+// checkout();
+
 // Displays table on 'cmd'.
 var createTable = function(){
 	// MySQL string query
@@ -31,14 +37,15 @@ var promptUser = function(res){
 	inquirer.prompt([{
 		type: 'input',
 		name: 'choice',
-		message: "Welcome to Bamazon, select an item from the store! (exit app with: e)"
+		message: "Welcome to Bamazon, select an item from the store! [EXIT APP BY DOUBLE PRESSING CTRL + C TWICE]"
 	}]).then(function(answer){
 		var correct = false;
 		// Give user the option to exit the app with a simple command.
 		// If selection is made with upper case, lowerCase() will convert the letter to lower case. 
-		if(answer.choice.toLowerCase() == "e"){
-			connection.end();
-		}
+		// if(answer.choice.toLowerCase() == "e"){
+		// 	// Terminates the connection.
+		// 	connection.end();
+		// }
 		// This loops runs thru the product list.
 		for(var i = 0; i < res.length; i++){
 			if(res[i].product_name == answer.choice){
@@ -64,11 +71,12 @@ var promptUser = function(res){
 					if((res[id].stock_quantity - answer.quantity) > 0){
 						// MySQL string, and response arguments pass to SQL.
 						connection.query("UPDATE products SET stock_quantity='" + (res[id].stock_quantity - answer.quantity) + "' WHERE product_name= '" + product + "'", function(err,res2){
-							// Displays to the user the item has been purchased
+							// Displays to the user the item has been purchased.
 							console.log("Product Purchased!");
 							createTable();
 						})
 					} else {
+						// If invalid selection is made, console log mssg.
 						console.log("Nope! try again!");
 						promptUser(res);
 					}
@@ -81,3 +89,10 @@ var promptUser = function(res){
 		}
 	})
 }
+
+
+
+
+// -- Manager Section -- //
+
+
